@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, FormEvent, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button } from '../ui/button';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +8,7 @@ import { createAudition } from '@/lib/actions/audition.actions';
 import { useRouter } from 'next/navigation';
 import { fetchUser } from '@/lib/actions/user.actions';
 
-const AuditionForm = ({id, clerkId}) => {
+const AuditionForm = ({id}) => {
   
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");

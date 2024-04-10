@@ -15,9 +15,9 @@ export const authOptions =  {
     async signIn({ user, account, profile, email, credentials }) {
       try {
          await updateUser({
-          userName:profile.name,
-          email: profile.email,
-          image: profile.picture
+          userName:profile?.name,
+          email: profile?.email,
+          image: profile?.picture
 
          })
          return true

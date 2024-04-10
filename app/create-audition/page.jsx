@@ -1,8 +1,20 @@
-import React from 'react'
 
-const page = () => {
+
+
+import React from 'react';
+import { useSession } from 'next-auth/react';
+import AuditionForm from '@/components/shared/AuditionForm';
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
+
+const page = async() => {
+  
+  const  { user }  = await getServerSession(authOptions) 
+ 
   return (
-    <div>page</div>
+    <div>
+      <AuditionForm id={user?.id} />
+    </div>
   )
 }
 
