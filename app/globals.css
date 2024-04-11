@@ -19,3 +19,8 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
+h3{
+  @apply md:text-4xl text-2xl font-bold
+}

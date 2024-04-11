@@ -1,12 +1,11 @@
 "use client"
 
 import React, { useState } from 'react'
-import { Button } from '../ui/button';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { createAudition } from '@/lib/actions/audition.actions';
+import { createAudition, uploadToCloudinary } from '@/lib/actions/audition.actions';
 import { useRouter } from 'next/navigation';
-import { fetchUser } from '@/lib/actions/user.actions';
+
 
 const AuditionForm = ({id}) => {
   
@@ -16,11 +15,38 @@ const AuditionForm = ({id}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [city, setCity] = useState("")
+    const [eventImage, setEventImage] = useState("")
     const router = useRouter(); 
+   
+    const handleImageChange = (e)=>{
+      e.preventDefault();
+
+        const file = e.target.files[0];
+      
+      if (!file) return;
+
+      if (!file.type.includes('image')) {
+          alert('Please upload an image!');
+
+          return;
+      }
+
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+          const result = reader.result;
+
+          setEventImage(result)
+      };
+    }
     
     
     const handleSubmit = async(e)=>{
+      
       e.preventDefault();
+      const imageUrl = await uploadToCloudinary(eventImage)
       try {
         const newEvent = await createAudition({
           creator:id, 
@@ -29,7 +55,8 @@ const AuditionForm = ({id}) => {
           description, 
           address, 
           city,
-          title
+          title,
+          image:imageUrl.url
         })
          
         if(newEvent){
@@ -52,7 +79,9 @@ const AuditionForm = ({id}) => {
     <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
     </div>
     <input className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="City..." value={city} onChange={e=>setCity(e.target.value)}/>
-    <Button type="submit" variant={"secondary"} >Create Event</Button>
+     <input accept='image/*' onChange={(e) =>handleImageChange(e)}  type="file"  />
+    <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" variant={"secondary"} >Create Event</button>
+     
   </form>
   )
 }
