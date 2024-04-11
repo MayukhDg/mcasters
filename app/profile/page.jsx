@@ -1,16 +1,25 @@
+"use client"
+
+
 import { fetchUserAudtions } from '@/lib/actions/audition.actions';
 import AuditionCard from '@/components/shared/AuditionCard';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-const page = async () => {
-  
- const { user } = await getServerSession(authOptions)
- const auditions = await fetchUserAudtions(user?.id) 
+const page =  () => {
+ 
+const [ userAuditions, setUserAuditions ] = useState([]);
+const serachParams = useSearchParams();
+const id = serachParams.get("id");
+
+useEffect(()=>{
+  fetchUserAudtions(id).then(data=>setUserAuditions(data));
+},[id])
+ 
  
  return (
     <div>
-       { auditions.map((item)=>(
+       { userAuditions.map((item)=>(
         <AuditionCard creator={item?.creator?._id}
         key={item?._id} 
         title={item?.title}
