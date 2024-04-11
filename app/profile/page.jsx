@@ -3,18 +3,18 @@
 
 import { fetchUserAudtions } from '@/lib/actions/audition.actions';
 import AuditionCard from '@/components/shared/AuditionCard';
-import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 const page =  () => {
  
 const [ userAuditions, setUserAuditions ] = useState([]);
-const serachParams = useSearchParams();
-const id = serachParams.get("id");
+const { data:session } = useSession();
 
 useEffect(()=>{
-  fetchUserAudtions(id).then(data=>setUserAuditions(data));
-},[id])
+  fetchUserAudtions(session?.user?.id).then(data=>setUserAuditions(data));
+
+},[session?.user?.id])
  
  
  return (
