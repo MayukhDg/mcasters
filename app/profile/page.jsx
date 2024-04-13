@@ -18,7 +18,7 @@ useEffect(()=>{
  
  
  return (
-    <div>
+    <div className="flex flex-wrap gap-3 p-5" >
        { userAuditions.map((item)=>(
         <AuditionCard creator={item?.creator?._id}
         key={item?._id} 

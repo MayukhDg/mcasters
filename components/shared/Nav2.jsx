@@ -36,7 +36,7 @@ const Nav2 = () => {
       />
       </Link>
       </div>
-      <MobileMenu/>
+      <MobileMenu router={router} session={session}/>
       </div> } 
 
     </nav>

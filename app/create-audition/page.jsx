@@ -1,14 +1,12 @@
-"use client"
 
 
 import React from 'react';
-import { useSession } from 'next-auth/react';
 import AuditionForm from '@/components/shared/AuditionForm';
+import { getCurrentUser } from '@/lib/utils';
 
-
-const page = () => {
-  
-  const  { data:session }  = useSession(); 
+const page = async() => {
+  const session = await getCurrentUser(); 
+ 
  
   return (
     <div>

@@ -1,8 +1,10 @@
 import React from 'react'
 
-const AuditionCard = ({title}) => {
+const AuditionCard = ({creator, title, userImage, address, city, description, startDate, endDate}) => {
   return (
-    <div>AuditionCard</div>
+    <div className="flex flex-col" >
+
+    </div>
   )
 }
 
