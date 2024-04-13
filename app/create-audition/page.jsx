@@ -1,11 +1,11 @@
-
+"use client"
 
 import React from 'react';
 import AuditionForm from '@/components/shared/AuditionForm';
-import { getCurrentUser } from '@/lib/utils';
+import { getSession } from 'next-auth/react';
 
 const page = async() => {
-  const session = await getCurrentUser(); 
+  const session = getSession(); 
  
  
   return (
