@@ -16,7 +16,7 @@ const MobileMenu = ({session, router}) => {
      </Menu.Button>
      <Menu.Items as="div" className=" flex flex-col items-center rounded-xl gap-3 bg-slate-200 p-3" >
       <Menu.Item>
-      <Link href={`/profile?id=${session?.user?.id}`} >
+      <Link href={`profile/${session?.user?.id}`} >
       <Image
        src={session?.user?.image}
        height={40}

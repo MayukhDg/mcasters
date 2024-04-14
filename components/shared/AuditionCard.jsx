@@ -4,6 +4,9 @@ import React from 'react'
 import { formatDate } from '@/lib/utils'
 
 const AuditionCard = ({creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
+  
+  const currentDate = new Date().toLocaleDateString()
+  
   return (
     <div className="flex flex-col auditionform p-6 gap-2 shadow-lg rounded-lg mt-2" >
      <div className='flex gap-3 items-center'>
@@ -29,9 +32,8 @@ const AuditionCard = ({creator, title, userImage, address, city, description, st
       <p className='text-lg font-medium' >City: {city}</p> 
       <div className='flex gap-3 items-center'>
       <p className='text-lg font-medium' >Start Date: {startDate.split("T")[0]}</p> 
-      <p className='text-lg font-medium' >End Date: {endDate.split("T")[0]}</p> 
+      <p className='text-lg font-medium' >End Date: {endDate.split("T")[0]}</p>  
       </div>
-
     </div>
   )
 }

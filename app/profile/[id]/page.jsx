@@ -1,25 +1,16 @@
-"use client"
-
-
 import { fetchUserAudtions } from '@/lib/actions/audition.actions';
 import AuditionCard from '@/components/shared/AuditionCard';
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { fetchUser } from '@/lib/actions/user.actions';
 
-const page =  () => {
+const page =  async({params}) => {
  
-const [ userAuditions, setUserAuditions ] = useState([]);
-const { data:session } = useSession();
-
-useEffect(()=>{
-  fetchUserAudtions(session?.user?.id).then(data=>setUserAuditions(data));
-
-},[session?.user?.id])
+const userAuditions = await fetchUserAudtions(params.id)
+const user = await fetchUser(params.id)
  
  
  return (
     <div className="flex flex-col p-5" >
-      <h3>Auditions Posted By {session?.user?.name}</h3>
+      <h3>Auditions Posted By {user?.name || "User"}</h3>
        
        { userAuditions.length<1 ? <h3 className='mt-2 text-lg font-light'>
         No Posts Yet

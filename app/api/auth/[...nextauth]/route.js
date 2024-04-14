@@ -13,14 +13,15 @@ export const authOptions =  {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      try {
-         await updateUser({
-          userName:profile?.name,
-          email: profile?.email,
-          image: profile?.picture
+      try { 
+        await updateUser({
+          userName:user?.name,
+          email: user?.email,
+          image: user?.image
 
          })
          return true
+        
       } catch (error) {
         console.log("Error checking if user exists: ", error.message);
         return false;
