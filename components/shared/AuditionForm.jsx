@@ -88,8 +88,8 @@ const AuditionForm = ({id}) => {
    <textarea className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" value={description} onChange={e=>setDescription(e.target.value)} />
    <textarea className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Address" value={address} onChange={e=>setAddress(e.target.value)}/>
     <div className='flex items-center justify-between w-1/3 md:flex-row flex-col gap-3 ' >
-    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-    <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+    <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date) => setStartDate(date)} />
+    <DatePicker dateFormat="dd/MM/yyyy" selected={endDate} onChange={(date) => setEndDate(date)} />
     </div>
     <input className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="City..." value={city} onChange={e=>setCity(e.target.value)}/>
      <input className="md:block hidden bg-blue-700 hover:bg-blue-800" accept='image/*' onChange={(e) =>handleImageChange(e)}  type="file"  />
