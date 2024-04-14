@@ -17,6 +17,8 @@ const AuditionForm = ({id}) => {
     const [city, setCity] = useState("")
     const [eventImage, setEventImage] = useState("")
     const router = useRouter(); 
+    const currentDate = new Date()  
+    
    
     const handleImageChange = (e)=>{
       e.preventDefault();
@@ -41,12 +43,23 @@ const AuditionForm = ({id}) => {
           setEventImage(result)
       };
     }
+
+
     
     
     const handleSubmit = async(e)=>{
       
       e.preventDefault();
       const imageUrl = await uploadToCloudinary(eventImage)
+      
+      if(endDate<startDate){
+        return alert("The start date cannot be before the end date")
+      }
+      
+      if(startDate<currentDate){
+          return alert("Start date cannot be before current Date")
+        }
+      
       try {
         const newEvent = await createAudition({
           creator:id, 
@@ -70,7 +83,7 @@ const AuditionForm = ({id}) => {
     }
   
     return (
-    <form onSubmit={handleSubmit} className='auditionform rounded-2xl py-10 w-[85%] md:w-full mx-3 md:mx-10 flex flex-col items-center justify-start bg-slate-200 gap-10' >
+    <form onSubmit={handleSubmit} className='auditionform rounded-2xl py-10 w-[85%] mx-3 md:mx-10 flex flex-col items-center justify-start bg-slate-200 gap-10' >
    <input className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title..." value={title} onChange={e=>setTitle(e.target.value)}/>
    <textarea className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" value={description} onChange={e=>setDescription(e.target.value)} />
    <textarea className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Address" value={address} onChange={e=>setAddress(e.target.value)}/>

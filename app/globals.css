@@ -22,7 +22,7 @@ body{
 
 
 h3{
-  @apply md:text-4xl text-2xl font-bold
+  @apply md:text-4xl text-3xl font-bold
 }
 
 h4{

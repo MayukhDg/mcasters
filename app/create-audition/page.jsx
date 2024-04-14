@@ -2,10 +2,10 @@
 
 import React from 'react';
 import AuditionForm from '@/components/shared/AuditionForm';
-import { getSession } from 'next-auth/react';
+import {  useSession } from 'next-auth/react';
 
-const page = async() => {
-  const session = getSession(); 
+const page = () => {
+  const { data: session} = useSession()
  
  
   return (

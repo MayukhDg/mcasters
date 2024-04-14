@@ -7,7 +7,11 @@ const page = async() => {
   const allAuditions = await fetchAllAuditions();
   
   return (
-    <div>
+    <div className='flex flex-col' >
+      { allAuditions.length<1?<h5 className='mt-2 text-lg font-light pl-5'>
+        No Auditions Available Currently
+      </h5> :
+      <div  className="flex flex-wrap gap-10 p-5">
       {allAuditions.map((item, index)=>(
         <AuditionCard
         creator={item?.creator?._id}
@@ -17,11 +21,14 @@ const page = async() => {
         address={item.address}
         city={item.city}
         description={item.description}
-        startData={item.startDate}
+        startDate={item.startDate}
         endDate={item.endDate}
+        eventImage={item?.image}
         /> 
       ))}
       </div>
+      }
+    </div>
   )
 }
 

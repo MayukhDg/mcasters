@@ -18,21 +18,33 @@ useEffect(()=>{
  
  
  return (
-    <div className="flex flex-wrap gap-3 p-5" >
+    <div className="flex flex-col p-5" >
+      <h3>Auditions Posted By {session?.user?.name}</h3>
+       
+       { userAuditions.length<1 ? <h3 className='mt-2 text-lg font-light'>
+        No Posts Yet
+       </h3> :
+       
+       <div className="flex flex-wrap gap-3 pt-3" >
+       
+       
        { userAuditions.map((item)=>(
-        <AuditionCard creator={item?.creator?._id}
+        <AuditionCard 
+        creator={item?.creator?._id}
         key={item?._id} 
         title={item?.title}
         userImage={item?.creator?.image}
         address={item.address}
         city={item.city}
         description={item.description}
-        startData={item.startDate}
+        startDate={item.startDate}
         endDate={item.endDate}
+        eventImage={item?.image}
 
         
         /> 
       )) }
+    </div>}
     </div>
   )
 }
