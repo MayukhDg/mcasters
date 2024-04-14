@@ -10,7 +10,7 @@ const AuditionCard = ({creator, title, userImage, address, city, description, st
   return (
     <div className="flex flex-col auditionform p-6 gap-2 shadow-lg rounded-lg mt-2" >
      <div className='flex gap-3 items-center'>
-      <Link href={`/profile?id=${creator}`} >
+      <Link href={`/profile/${creator}`} >
       <Image
         src={userImage}
         height={25}

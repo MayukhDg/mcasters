@@ -7,7 +7,7 @@ import Image from "next/image"
 
 
 const Home = () => {
-  const { data:session}  = useSession();
+  const { data:session}  = useSession()
 
 
   if(!session){
