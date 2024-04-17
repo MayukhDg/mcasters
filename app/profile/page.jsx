@@ -12,7 +12,10 @@ const  { data:session } = useSession();
 const [userAuditions, setUserAuditions] = useState([])
 
 useEffect(()=>{
-  fetchUserAudtions(session?.user?.id).then(data=>setUserAuditions(data));
+  const setAuditions = async()=>{
+   await fetchUserAudtions(session?.user?.id).then(data=>setUserAuditions(data));
+  }
+  setAuditions()
 },[])
  
  
@@ -20,11 +23,9 @@ useEffect(()=>{
     <div className="flex flex-col p-5" >
       <h3>Auditions Posted By {session?.user?.name || "User"}</h3>
        
-       { userAuditions.length<1 ? <h3 className='mt-2 text-lg font-light'>
-        No Posts Yet
-       </h3> :
        
-       <div className="flex flex-wrap gap-3 pt-3" >
+       
+      <div className="flex flex-wrap gap-3 pt-3" >
        
        
        { userAuditions.map((item)=>(
@@ -43,7 +44,7 @@ useEffect(()=>{
         
         /> 
       )) }
-    </div>}
+    </div>
     </div>
   )
 }

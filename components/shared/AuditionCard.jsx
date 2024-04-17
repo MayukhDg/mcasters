@@ -5,8 +5,6 @@ import { formatDate } from '@/lib/utils'
 
 const AuditionCard = ({creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
   
-  const currentDate = new Date().toLocaleDateString()
-  
   return (
     <div className="flex flex-col auditionform p-6 gap-2 shadow-lg rounded-lg mt-2" >
      <div className='flex gap-3 items-center'>
@@ -26,6 +24,7 @@ const AuditionCard = ({creator, title, userImage, address, city, description, st
        height={150}
        width={150}
        className="rounded-2xl"
+       alt="event"
      />
       <p className='text-lg font-medium' >What we are looking for: {description}</p>
       <p className='text-lg font-medium' >Address: {address}</p> 

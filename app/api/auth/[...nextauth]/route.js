@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import User from "@/lib/models/user.model"
 import { updateUser } from "@/lib/actions/user.actions"
+import { redirect } from "next/navigation"
 
 export const authOptions =  {
   providers: [
@@ -41,6 +42,7 @@ export const authOptions =  {
     },
     async jwt({ token, user, account, profile, isNewUser }) {
       return token
+     
     }
   }
 }
