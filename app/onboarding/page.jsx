@@ -1,6 +1,5 @@
 import { fetchUser, updateUser } from '@/lib/actions/user.actions';
-import { getCurrentSession } from '@/lib';
-
+import { getCurrentSession } from '@/lib/session';
 
 const page = async() => {
   
