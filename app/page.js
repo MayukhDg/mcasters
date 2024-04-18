@@ -1,28 +1,13 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import Image from "next/image"
 import { fetchUser } from '@/lib/actions/user.actions';
-import { redirect, useRouter } from 'next/navigation';
+import { getCurrentSession } from "@/lib/session";
 
 
-const Home = () => {
-const [user, setUser] = useState({});
-const { data:session}  = useSession()
-const router = useRouter();
+const Home = async() => {
  
+  const session = await  getCurrentSession()
+
   
- useEffect(()=>{
-  const getUserDetails = async ()=>{
-   await fetchUser(session?.user?.id).then(data=>setUser(data));
-
-   
-  }
-  getUserDetails() 
-},[])
-
-
   
  if(!session){
     return (
@@ -42,18 +27,13 @@ const router = useRouter();
     )
   }
   
-  if(user?.onboarded){
-   router.push("/")
- } else{
-   router.push("/onboarding")
- }
+ 
 
  
 return (
-    <>
-    { user?.onboarded && <section className='p-5 flex'>
+    <section className='p-5 flex'>
    <div className='flex flex-col gap-4' >
-   <h3 className=' leading-[30px] md:leading-[50px] tracking-[1px]' > Welcome {user?.name}</h3>
+   <h3 className=' leading-[30px] md:leading-[50px] tracking-[1px]' > Welcome {session?.user?.name}</h3>
    <h4 className='font-medium leading-[45px]'>Give flight to your dreams. <br/>
      <span className='' >Find a gig near you</span> </h4>
    </div>
@@ -66,8 +46,8 @@ return (
           className='md:block hidden w-[80%] rotate-12 mt-20'
          />
         </div>
-     </section>}
-    </>
+     </section>
+    
   )
 }
 

@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createAudition, uploadToCloudinary } from '@/lib/actions/audition.actions';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+
 
 
 const AuditionForm = ({id}) => {
@@ -17,7 +18,8 @@ const AuditionForm = ({id}) => {
     const [city, setCity] = useState("")
     const [eventImage, setEventImage] = useState("")
     const router = useRouter(); 
-    const currentDate = new Date() 
+    const currentDate = new Date()
+    const pathname = usePathname() 
    
     const handleImageChange = (e)=>{
       e.preventDefault();
@@ -68,6 +70,7 @@ const AuditionForm = ({id}) => {
           address, 
           city,
           title,
+          pathname,
           image:imageUrl.url
         })
          

@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { formatDate } from '@/lib/utils'
 
 const AuditionCard = ({creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
   

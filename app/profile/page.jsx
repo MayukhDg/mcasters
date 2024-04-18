@@ -1,23 +1,12 @@
-"use client"
-
 import { fetchUserAudtions } from '@/lib/actions/audition.actions';
 import AuditionCard from '@/components/shared/AuditionCard';
+import { getCurrentSession } from '@/lib/session';
 
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 
-const page = () => {
+const page = async() => {
 
-const  { data:session } = useSession();
-const [userAuditions, setUserAuditions] = useState([])
-
-useEffect(()=>{
-  const setAuditions = async()=>{
-   await fetchUserAudtions(session?.user?.id).then(data=>setUserAuditions(data));
-  }
-  setAuditions()
-},[])
- 
+const session  = await getCurrentSession();
+const userAuditions = await fetchUserAudtions(session?.user?.id)
  
  return (
     <div className="flex flex-col p-5" >
