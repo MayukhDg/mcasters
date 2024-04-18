@@ -1,15 +1,15 @@
 import Image from "next/image"
 import { fetchUser } from '@/lib/actions/user.actions';
 import { getCurrentSession } from "@/lib/session";
-
+import { redirect } from "next/navigation";
 
 const Home = async() => {
  
-  const session = await  getCurrentSession()
+  const session = await getCurrentSession()
+  const currentUser = await fetchUser(session?.user?.id)
 
-  
-  
- if(!session){
+ 
+  if(!session){
     return (
       <div className='p-5 flex' >
         <h3 className='leading-[50px] tracking-[2.5px]'>Give flight to your dreams. <br/>
@@ -26,10 +26,11 @@ const Home = async() => {
       </div>
     )
   }
-  
- 
 
- 
+ if(!currentUser?.onboarded){
+  redirect("/onboarding")
+ }
+
 return (
     <section className='p-5 flex'>
    <div className='flex flex-col gap-4' >

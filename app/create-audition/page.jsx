@@ -1,4 +1,3 @@
-import React from 'react';
 import AuditionForm from '@/components/shared/AuditionForm';
 import { getCurrentSession } from '@/lib/session';
 
