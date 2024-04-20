@@ -6,18 +6,16 @@ const page = async() => {
   
   const allAuditions = await fetchAllAuditions();
 
-  if(!allAuditions.length){
-    return (
-      <div className='flex flex-col pt-3 pl-5' >
-       <h3 className='mt-2 text-lg font-light'>No Auditions Available Currently</h3>
-      </div>
-    )
-  }
+  
   
   return (
-    <div className='flex flex-col' >
+    <div className='flex flex-col h-screen' >
       
-      <div  className="flex flex-wrap gap-10 p-5">
+      { !allAuditions.length? 
+         <div className='flex flex-1 p-5' >
+         <h3 className='font-light'>No Auditions posted yet </h3>
+         </div>:
+       <div  className="flex flex-wrap gap-10 p-5 flex-1">
       {allAuditions.map((item, index)=>(
         <AuditionCard
         creator={item?.creator?._id}
@@ -33,6 +31,7 @@ const page = async() => {
         /> 
       ))}
       </div>
+      }
     </div>
   )
 }

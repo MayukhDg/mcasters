@@ -1,7 +1,25 @@
+"use client";
+
+import { deleteAudition } from '@/lib/actions/audition.actions';
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 
-const AuditionCard = ({creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
+const AuditionCard = ({id, session, creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
+   
+  const pathname = usePathname();
+  
+  const handleDelete = async(e)=>{
+    e.preventDefault()
+
+    try {
+      await deleteAudition({
+       auditionId:id, userId:creator, pathname
+      })
+    } catch (error) {
+      console.log(error)     
+    }
+  }
   
   return (
     <div className="flex flex-col auditionform p-6 gap-2 shadow-lg rounded-lg mt-2" >
@@ -16,6 +34,14 @@ const AuditionCard = ({creator, title, userImage, address, city, description, st
       />
        </Link>
       <p className='text-2xl font-medium' >{title}</p>   
+      { creator === session?.user?.id && <button onClick={handleDelete}>
+        <Image
+          src="/trash.png"
+          height={20}
+          width={20}
+          alt="trash"
+        />
+      </button> }
      </div>
      <Image
        src={eventImage}
