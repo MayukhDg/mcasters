@@ -78,7 +78,7 @@ const OnboardingForm = ({session, currentUser}) => {
       <form onSubmit={handleClick}  className='auditionform rounded-2xl py-10 w-[85%] mx-3 md:mx-10 flex flex-col items-center justify-start bg-slate-200 gap-10' >
        <div className="flex items-center gap-3" >
         <Image
-          src={currentUser?.image}
+          src={session?.user?.image}
           alt="profile"
           height={80}
           width={80}
