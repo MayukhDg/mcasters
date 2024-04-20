@@ -4,6 +4,7 @@ import Provider from "@/components/shared/Provider";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,11 +13,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
+
+  
+ return (
     <html lang="en">
       <Provider>
       <body className={inter.className}>
-        <Navbar/>
+        <Navbar />
         {children}
         <Footer/>
         </body>

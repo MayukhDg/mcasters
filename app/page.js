@@ -8,6 +8,7 @@ const Home = async() => {
   const session = await getCurrentSession()
   const currentUser = await fetchUser(session?.user?.id)
 
+
  
   if(!session){
     return (
@@ -17,6 +18,7 @@ const Home = async() => {
         <div className='flex flex-1 justify-center pl-5' >  
          <Image
           src="/hero.jpg"
+          priority
           width={150}
           height={150}
           alt="hero"
@@ -41,6 +43,7 @@ return (
    <div className='flex flex-1 justify-center pl-5' >  
          <Image
           src="/hero.jpg"
+          priority
           width={150}
           height={150}
           alt="hero"
