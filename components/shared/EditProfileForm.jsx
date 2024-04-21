@@ -12,7 +12,7 @@ const EditProfileForm = ({currentUser, session}) => {
 
 
 const [role, setRole]  = useState("");
-const [bio, setBio] = useState("");
+const [bio, setBio] = useState(currentUser?.bio);
 const [phoneNumber, setPhoneNumber] = useState(currentUser?.phoneNumber); 
 const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
  const [userName, setUserName] = useState(currentUser?.name)
