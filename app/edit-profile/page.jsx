@@ -1,4 +1,4 @@
-import OnboardingForm from '@/components/shared/OnboardingForm';
+import EditProfileForm from '@/components/shared/EditProfileForm';
 import { fetchUser, updateUser } from '@/lib/actions/user.actions';
 import { getCurrentSession } from '@/lib/session';
 
@@ -9,7 +9,7 @@ const currentUser = await fetchUser(session?.user?.id)
   
   return (
     <div className='h-screen'>
-       <OnboardingForm  currentUser={currentUser} session={session} />
+       <EditProfileForm  currentUser={currentUser} session={session} />
       </div>
   )
 }

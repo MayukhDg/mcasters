@@ -17,7 +17,7 @@ const OnboardingForm = ({session, currentUser}) => {
   const [phoneNumber, setPhoneNumber] = useState(""); 
   const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
  const [userName, setUserName] = useState(currentUser?.name)
- const [image, setImage] = useState(currentUser?.image)  
+ const [image, setImage] = useState("");  
   
  
  const router = useRouter();

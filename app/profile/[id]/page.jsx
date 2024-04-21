@@ -18,7 +18,7 @@ if(!user?.onboarded){
 }
 
 return (
-    <section className="flex flex-col p-5 gap-5 min-h-screen" >
+    <section id="profile" className="flex flex-col p-5 gap-8 min-h-screen" >
      <Profile userAuditions={userAuditions} user={user} session={session}/>
     </section>
   )

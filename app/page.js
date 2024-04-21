@@ -10,7 +10,7 @@ const Home = async() => {
 
 
  
-  if(!session){
+  if(!session && !currentUser){
     return (
       <div className='p-5 flex h-screen' >
         <h3 className='leading-[50px] tracking-[2.5px]'>Give flight to your dreams. <br/>
