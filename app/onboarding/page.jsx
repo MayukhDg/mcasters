@@ -1,4 +1,4 @@
-import OnboardingForm from '@/components/shared/OnboardingForm';
+import OnboardingForm from '@/components/forms/OnboardingForm';
 import { fetchUser, updateUser } from '@/lib/actions/user.actions';
 import { getCurrentSession } from '@/lib/session';
 import { redirect } from "next/navigation";

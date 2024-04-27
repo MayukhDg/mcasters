@@ -1,8 +1,15 @@
-import AuditionForm from '@/components/shared/AuditionForm';
+import AuditionForm from '@/components/forms/AuditionForm';
+import { fetchUser } from '@/lib/actions/user.actions';
 import { getCurrentSession } from '@/lib/session';
+import { redirect } from 'next/navigation';
 
 const page = async() => {
   const session = await getCurrentSession(); 
+  const currentUser = await fetchUser(session?.user?.id)
+
+  if(!currentUser?.onboarded){
+    redirect("/onboarding")
+  }
  
  
   return (

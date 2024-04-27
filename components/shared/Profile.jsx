@@ -20,8 +20,10 @@ const Profile = ({session, user, userAuditions}) => {
      alt="profile"
      className='rounded-full object-contain'
     />
-    <h3>{user?.name}</h3>
-    { session?.user?.id === user?._id && <button onClick={()=>router.push("/edit-profile")} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" >Edit Profile</button> }
+    <h3>{user?.name} <span className='text-sm font-light' >
+        ({ user?.role.toUpperCase() })      
+      </span>  </h3>
+    { session?.user?.id === user?._id && <button onClick={()=>router.push("/edit-profile")} >Edit Profile</button> }
     </div> 
     <div className='w-[40%] bg-slate-200 p-3 rounded-2xl' >
      <p className='font-semibold text-lg  ' >{user?.bio}</p>

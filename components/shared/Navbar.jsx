@@ -20,13 +20,13 @@ const Navbar = () => {
      { status!=="authenticated" && <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' variant="destructive"  onClick={() => signIn("google")}>Log In</button> } 
       { status ==="authenticated" && 
       <div className='flex items-center w-full justify-between'>
-      <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' onClick={()=>router.push("/")} >Home</button> 
+      <button onClick={()=>router.push("/")} >Home</button> 
       <div className=' hidden md:flex items-center' >
-      <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' variant="destructive" onClick={() => {
+      <button onClick={() => {
         signOut()
         router.push("/")
       }}>Log Out</button>
-      { pathname!=="/onboarding" && <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' onClick={()=>router.push("/create-audition")} >Create Audition</button>}
+      { pathname!=="/onboarding" && <button  onClick={()=>router.push("/create-audition")} >Create Audition</button>}
      { pathname !=="/onboarding" && <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' onClick={()=>router.push("/latest-auditions")} >Latest Auditions</button>}
       <Link href={`/profile/${session?.user?.id}`} >
       <Image

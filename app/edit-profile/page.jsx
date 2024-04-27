@@ -1,5 +1,5 @@
-import EditProfileForm from '@/components/shared/EditProfileForm';
-import { fetchUser, updateUser } from '@/lib/actions/user.actions';
+import EditProfileForm from '@/components/forms/EditProfileForm';
+import { fetchUser} from '@/lib/actions/user.actions';
 import { getCurrentSession } from '@/lib/session';
 
 const page = async() => {

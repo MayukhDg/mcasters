@@ -4,7 +4,7 @@ import { updateUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import OptionsBox from "./OptionsBox";
+import OptionsBox from "../shared/OptionsBox";
 import { uploadToCloudinary } from "@/lib/actions/audition.actions";
 
 
@@ -12,7 +12,7 @@ import { uploadToCloudinary } from "@/lib/actions/audition.actions";
 const OnboardingForm = ({session, currentUser}) => {
   
   
-  const [role, setRole]  = useState("");
+  const [role, setRole]  = useState("Casting Agency");
   const [bio, setBio] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(""); 
   const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
@@ -89,10 +89,10 @@ const OnboardingForm = ({session, currentUser}) => {
        </div>
 
        <input className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Name..." value={userName} onChange={e=>setUserName(e.target.value)} />
-       <input className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Phone number" value={phoneNumber} onChange={e=>setPhoneNumber(e.target.value)} />
+       <input  pattern="[0-9]{3}[0-9]{3}[0-9]{4}" type="tel" className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ENter Phone number without extension" value={phoneNumber} onChange={e=>setPhoneNumber(e.target.value)} />
        <textarea placeholder="Bio" className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={bio} onChange={e=>setBio(e.target.value)} />
-       <OptionsBox roles={roles}/>
-       <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" >Complete onboarding</button>
+       <OptionsBox role={role} setRole={setRole} roles={roles}/>
+       <button  type="submit" >Complete onboarding</button>
        
       </form>
     

@@ -80,6 +80,7 @@ const AuditionForm = ({id}) => {
                
       } catch (error) {
         console.log(error)
+        alert(`${error.message}`)
       }
       
     }
