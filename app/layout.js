@@ -1,11 +1,13 @@
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Provider from "@/components/shared/Provider";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 
-
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ['latin'],
+})
 
 export const metadata = {
   title: "MovieCasters",
@@ -13,13 +15,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
+    
   
  return (
     <html lang="en">
       <Provider>
-      <body className={inter.className}>
-        <Navbar />
+      <body className={roboto.className}>
+        <Navbar  />
         {children}
         <Footer/>
         </body>

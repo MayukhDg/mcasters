@@ -3,7 +3,8 @@ import { fetchUser} from '@/lib/actions/user.actions';
 import { getCurrentSession } from '@/lib/session';
 
 const page = async() => {
-  const session = await getCurrentSession(); 
+
+const session = await getCurrentSession(); 
 const currentUser = await fetchUser(session?.user?.id) 
 
   

@@ -9,7 +9,7 @@ import Link from "next/link"
 import MobileMenu from './MobileMenu';
 import { usePathname } from 'next/navigation';
 
-const Navbar = () => {
+const Navbar = ({currentUser}) => {
    
   const { data: session, status } = useSession()
   const router = useRouter();

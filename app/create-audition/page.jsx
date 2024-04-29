@@ -10,7 +10,11 @@ const page = async() => {
   if(!currentUser?.onboarded){
     redirect("/onboarding")
   }
- 
+   
+
+  if(currentUser?.role !=="Casting Agency"){
+    redirect("/")
+  }
  
   return (
     <div>

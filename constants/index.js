@@ -1,0 +1,1 @@
+export const roles = [ "Casting Agency", "Actor", "Model", "DJ", "Comedian", "Script Writer", "Voiceover Artist", "Singer"]

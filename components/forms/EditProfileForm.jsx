@@ -5,18 +5,19 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import OptionsBox from "../shared/OptionsBox";
-import { uploadToCloudinary } from "@/lib/actions/audition.actions";
+import { uploadToCloudinary } from "@/lib/actions/audition.actions"
+import { roles } from "@/constants";
+import Loader from "../shared/Loader";
+
+const EditProfileForm = ({currentUser}) => {
 
 
-const EditProfileForm = ({currentUser, session}) => {
-
-
-const [role, setRole]  = useState("");
+const [role, setRole]  = useState(currentUser?.role);
 const [bio, setBio] = useState(currentUser?.bio);
 const [phoneNumber, setPhoneNumber] = useState(currentUser?.phoneNumber); 
-const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
  const [userName, setUserName] = useState(currentUser?.name)
  const [image, setImage] = useState(currentUser?.image)  
+ const [submitting, setSubmitting] = useState(false)
   
  
  const router = useRouter();
@@ -54,6 +55,7 @@ const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
     const imageUrl = await uploadToCloudinary(image)
     
     try {
+      setSubmitting(true)
       const updatedUser = await updateUser({
         ...currentUser,
         userName, 
@@ -63,6 +65,7 @@ const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
         role, 
       })
       if(updatedUser){
+        setSubmitting(false)
         router.push("/")
       }  
     } catch (error) {
@@ -70,7 +73,10 @@ const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
     }
      
    }
-  
+    
+   if(submitting){
+    return <Loader/>
+   }
   
     return (
         <form onSubmit={handleClick}  className='auditionform rounded-2xl py-10 w-[85%] mx-3 md:mx-10 flex flex-col items-center justify-start bg-slate-200 gap-10' >
@@ -89,7 +95,7 @@ const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
         <input className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Name..." value={userName} onChange={e=>setUserName(e.target.value)} />
         <input  pattern="[0-9]{3}[0-9]{3}[0-9]{4}" type="tel" className=" outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Phone number" value={phoneNumber} onChange={e=>setPhoneNumber(e.target.value)} />
         <textarea placeholder="Bio" className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[70%] md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={bio} onChange={e=>setBio(e.target.value)} />
-        <OptionsBox roles={roles}/>
+        <OptionsBox role={role} setRole={setRole} roles={roles}/>
         <button  type="submit" >Save Changes</button>
         
        </form>

@@ -27,8 +27,8 @@ const AuditionCard = ({id, session, creator, title, userImage, address, city, de
       <Link href={`/profile/${creator}`} >
       <Image
         src={userImage}
-        height={25}
-        width={25}
+        height={45}
+        width={50}
         alt="user"
         className="object-contain rounded-full"
       />

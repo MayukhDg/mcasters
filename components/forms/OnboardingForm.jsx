@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import OptionsBox from "../shared/OptionsBox";
 import { uploadToCloudinary } from "@/lib/actions/audition.actions";
+import { roles } from "@/constants";
 
 
 
@@ -15,7 +16,7 @@ const OnboardingForm = ({session, currentUser}) => {
   const [role, setRole]  = useState("Casting Agency");
   const [bio, setBio] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(""); 
-  const roles = [ "Casting Agency", "actor", "model", "DJ", "Comedian", "Other"]
+
  const [userName, setUserName] = useState(currentUser?.name)
  const [image, setImage] = useState("");  
   
