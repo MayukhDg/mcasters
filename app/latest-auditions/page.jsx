@@ -31,6 +31,7 @@ const page = async() => {
         startDate={item.startDate}
         endDate={item.endDate}
         eventImage={item?.image}
+        attendees = {item?.attendees}
         /> 
       ))}
       </div>

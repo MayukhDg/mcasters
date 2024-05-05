@@ -80,6 +80,7 @@ const AuditionForm = ({id}) => {
         if(newEvent){
           setSubmitting(false)
           router.push("/")
+         
         }
                
       } catch (error) {

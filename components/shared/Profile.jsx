@@ -37,6 +37,7 @@ const Profile = ({session, user, userAuditions}) => {
        
        { userAuditions.map((item)=>(
         <AuditionCard
+        attendees={item?.attendees}
         id={item?._id} 
         session={session}
         creator={item?.creator?._id}

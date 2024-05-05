@@ -1,24 +1,47 @@
 "use client";
 
-import { deleteAudition } from '@/lib/actions/audition.actions';
+import { addUserToEvent, deleteAudition } from '@/lib/actions/audition.actions';
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 
-const AuditionCard = ({id, session, creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
+const AuditionCard = ({id, session, attendees, creator, title, userImage, address, city, description, startDate, endDate, eventImage}) => {
    
   const pathname = usePathname();
   
   const handleDelete = async(e)=>{
     e.preventDefault()
-
-    try {
-      await deleteAudition({
-       auditionId:id, userId:creator, pathname
-      })
-    } catch (error) {
-      console.log(error)     
+    const confirmDelete = confirm("Are you sure you want to delete this event?")
+    
+    if(confirmDelete){
+      try {
+        await deleteAudition({
+         auditionId:id, userId:creator, pathname
+        })
+      } catch (error) {
+        console.log(error)     
+      }
     }
+    
+  }
+
+  const registerForEvent = async(e)=>{
+    e.preventDefault()
+    const isUserConfirmed = confirm("Are you sure you want to attend this event?")
+    if(isUserConfirmed){
+      const isUserAttendingEvent = attendees?.find(attendee=>attendee._id === creator)
+      if(isUserAttendingEvent){
+        return alert("You are already attending this event")
+      }
+     const eventAdded =  await addUserToEvent({
+        auditionId:id, userId:creator, pathname
+      })
+      if(eventAdded){
+        return alert("You are attending this Event!")
+      }
+    } 
+    
+
   }
   
   return (
@@ -57,6 +80,20 @@ const AuditionCard = ({id, session, creator, title, userImage, address, city, de
       <p className='text-lg font-medium' >Start Date: {startDate.split("T")[0]}</p> 
       <p className='text-lg font-medium' >End Date: {endDate.split("T")[0]}</p>  
       </div>
+     { <button onClick={registerForEvent} >Register For Event</button>}
+     <div className='flex items-center gap-3 mt-3' >
+     { attendees?.length>0 && attendees?.slice(0,5).map((item)=>(
+      <Link key={item?._id} href={`/profile/${item?._id}`} >
+      <Image
+        src={item?.image}
+        height={35}
+        width={35}
+        alt="attendee"
+        className='rounded-full'
+      />
+      </Link>
+     )) }
+     </div>
     </div>
   )
 }
